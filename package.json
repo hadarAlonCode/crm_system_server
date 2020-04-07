@@ -7,12 +7,13 @@
     "axios": "^0.19.2",
     "body-parse": "^0.1.0",
     "cors": "^2.8.5",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "mongoose": "^5.9.7",
+    "mongoose-paginate": "^5.0.3",
     "nodemon": "^2.0.2",
     "request": "^2.88.2",
-    "request-promise": "^4.2.5",
-    "esm": "^3.2.25"
+    "request-promise": "^4.2.5"
   },
   "scripts": {
     "start": "nodemon -r esm index.js"

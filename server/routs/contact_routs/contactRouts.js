@@ -8,6 +8,7 @@ const Contact = require('../../models/contact/Contact')
 module.exports = (app) => {
     createContact(app)
     getContacts(app)
+    getContactsPagination(app)
 }
 
 
@@ -47,6 +48,27 @@ const getContacts = async (app) => {
 
     })
 }
+
+const getContactsPagination = async (app) => {
+    app.get('/contact/pagination/get', async (req, res) => {
+
+        let page = req.query.page;
+        let limit = req.query.limit;
+
+        const contacts = await Contact.getPagination(parseInt(limit), parseInt(page))
+        console.log(contacts, "contacts contacts ")
+        res.send({ ok: true, result: contacts })
+
+        // if (contacts.length > 0) {
+        //     res.send({ ok: true, result: contacts })
+        // } else {
+        //     res.send({ ok: false, result: CONTACT_ERROR })
+        // }
+
+
+    })
+}
+
 
 
 //create paginate !

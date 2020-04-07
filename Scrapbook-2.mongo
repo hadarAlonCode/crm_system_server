@@ -1,92 +1,65 @@
-db.contacts.find({})
+// db.contacts.find({})
 
-// db.contacts.insertMany( [
-//     {
+db.contacts.insertMany( [
+    {
         
-//         name: "Mendoza Lott",
-//         email: "mendozalott@imant.com",
-//         firstContact: "2017-04-12T21:00:00.000Z",
-//         img: "",
-//         status: "lead",
-//         country: "Malta",
-//         company: "BDO",
-//         position: "salse manager"
-//     },
-//     {
-       
-//         name: "Sharp Sexton",
-//         email: "sharpsexton@imant.com",
-//         firstContact: "2018-04-04T21:00:00.000Z",
-//         img: "",
-//         status: "sold",
-//         country: "France",
-//         company: "Apple",
-//         position: "CTO"
-//     },
-//     {
-       
-//         name: "Mali Lott",
-//         email: "mendozalott@imant.com",
-//         firstContact: "2017-04-12T21:00:00.000Z",
-//         img: "",
-//         status: "lead",
-//         country: "Malta",
-//         company: "BDO",
-//         position: "salse manager"
-//     },
-//     {
-       
-//         name: "Eli Sexton",
-//         email: "sharpsexton@imant.com",
-//         firstContact: "2018-04-04T21:00:00.000Z",
-//         img: "",
-//         status: "sold",
-//         country: "France",
-//         company: "Apple",
-//         position: "CTO"
-//     },
-//     {
-       
-//         name: "Ron Lott",
-//         email: "mendozalott@imant.com",
-//         firstContact: "2017-04-12T21:00:00.000Z",
-//         img: "",
-//         status: "lead",
-//         country: "Malta",
-//         company: "BDO",
-//         position: "salse manager"
-//     },
-//     {
-       
-//         name: "Dan Sexton",
-//         email: "sharpsexton@imant.com",
-//         firstContact: "2018-04-04T21:00:00.000Z",
-//         img: "",
-//         status: "sold",
-//         country: "France",
-//         company: "Apple",
-//         position: "CTO"
-//     },
-//     {
-       
-//         name: "Bar Lott",
-//         email: "mendozalott@imant.com",
-//         firstContact: "2017-04-12T21:00:00.000Z",
-//         img: "",
-//         status: "lead",
-//         country: "Malta",
-//         company: "BDO",
-//         position: "salse manager"
-//     },
-//     {
-       
-//         name: "Shay Sexton",
-//         email: "sharpsexton@imant.com",
-//         firstContact: "2018-04-04T21:00:00.000Z",
-//         img: "",
-//         status: "sold",
-//         country: "France",
-//         company: "Apple",
-//         position: "CTO"
-//     }
-// ]);
+        name: "Mali Sea",
+        email: "c@imant.com",
+        firstContact: "2019-02-12T21:00:00.000Z",
+        img: "",
+        status: "sold",
+        country: "Malta",
+        company: "BDO",
+        position: "manager",
+        phone: "515165454"
+    },
+    {
+        
+        name: "Eva Poli",
+        email: "c@imant.com",
+        firstContact: "2018-04-12T21:00:00.000Z",
+        img: "",
+        status: "lead",
+        country: "USA",
+        company: "Dell",
+        position: "Business manager",
+        phone: "516516516"
+    },
+    {
+        
+        name: "Or Ben",
+        email: "v@imant.com",
+        firstContact: "2017-02-12T21:00:00.000Z",
+        img: "",
+        status: "contacted",
+        country: "Israel",
+        company: "Intel",
+        position: "manager",
+        phone: "0520000000"
+    },
+    {
+        
+        name: "Sagi Lev",
+        email: "s@imant.com",
+        firstContact: "2016-03-14T21:00:00.000Z",
+        img: "",
+        status: "lead",
+        country: "Israel",
+        company: "IKEA",
+        position: "manager",
+        phone: "0520000000"
+    },
+    {
+        
+        name: "Eli Bar",
+        email: "d@imant.com",
+        firstContact: "2017-03-18T21:00:00.000Z",
+        img: "",
+        status: "lead",
+        country: "Israel",
+        company: "Tushiba",
+        position: "manager",
+        phone: "8786876656"
+    }
+    
+]);

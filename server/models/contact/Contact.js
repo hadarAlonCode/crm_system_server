@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const mongoosePaginate = require('mongoose-paginate');
 const Schema = mongoose.Schema
 
 const contactSchema = new Schema({
@@ -14,6 +15,7 @@ const contactSchema = new Schema({
 
 })
 
+contactSchema.plugin(mongoosePaginate);
 
 contactSchema.set('toJSON', {
     transform(doc, ret) {
@@ -60,6 +62,13 @@ contactSchema.statics.getByCountry = async function getByCountry(country) {
 contactSchema.statics.getAll = async function getAll() {
     const query = this.find({})
     return query.exec().then((contact) => (contact ? contact : undefined))
+}
+
+
+contactSchema.statics.getPagination = async function getPagination(limit, page) {
+    const query = this.paginate({}, { page: page, limit: limit })
+    return query.then((result) => (result ? result.docs : undefined))
+
 }
 
 
