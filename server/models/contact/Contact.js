@@ -10,7 +10,7 @@ const contactSchema = new Schema({
     firstContact: Date,
     country: String,
     status: String, //  Lead / contacted /sold / lost
-    cpmpany: String,
+    company: String,
     position: String
 
 })
