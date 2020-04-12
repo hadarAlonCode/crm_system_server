@@ -1,65 +1,65 @@
-// db.contacts.find({})
+db.contacts.find( { name: { $regex: /eli/ } } )
 
-db.contacts.insertMany( [
-    {
+// db.contacts.insertMany( [
+//     {
         
-        name: "Mali Sea",
-        email: "c@imant.com",
-        firstContact: "2019-02-12T21:00:00.000Z",
-        img: "",
-        status: "sold",
-        country: "Malta",
-        company: "BDO",
-        position: "manager",
-        phone: "515165454"
-    },
-    {
+//         name: "Mali Sea",
+//         email: "c@imant.com",
+//         firstContact: "2019-02-12T21:00:00.000Z",
+//         img: "",
+//         status: "sold",
+//         country: "Malta",
+//         company: "BDO",
+//         position: "manager",
+//         phone: "515165454"
+//     },
+//     {
         
-        name: "Eva Poli",
-        email: "c@imant.com",
-        firstContact: "2018-04-12T21:00:00.000Z",
-        img: "",
-        status: "lead",
-        country: "USA",
-        company: "Dell",
-        position: "Business manager",
-        phone: "516516516"
-    },
-    {
+//         name: "Eva Poli",
+//         email: "c@imant.com",
+//         firstContact: "2018-04-12T21:00:00.000Z",
+//         img: "",
+//         status: "lead",
+//         country: "USA",
+//         company: "Dell",
+//         position: "Business manager",
+//         phone: "516516516"
+//     },
+//     {
         
-        name: "Or Ben",
-        email: "v@imant.com",
-        firstContact: "2017-02-12T21:00:00.000Z",
-        img: "",
-        status: "contacted",
-        country: "Israel",
-        company: "Intel",
-        position: "manager",
-        phone: "0520000000"
-    },
-    {
+//         name: "Or Ben",
+//         email: "v@imant.com",
+//         firstContact: "2017-02-12T21:00:00.000Z",
+//         img: "",
+//         status: "contacted",
+//         country: "Israel",
+//         company: "Intel",
+//         position: "manager",
+//         phone: "0520000000"
+//     },
+//     {
         
-        name: "Sagi Lev",
-        email: "s@imant.com",
-        firstContact: "2016-03-14T21:00:00.000Z",
-        img: "",
-        status: "lead",
-        country: "Israel",
-        company: "IKEA",
-        position: "manager",
-        phone: "0520000000"
-    },
-    {
+//         name: "Sagi Lev",
+//         email: "s@imant.com",
+//         firstContact: "2016-03-14T21:00:00.000Z",
+//         img: "",
+//         status: "lead",
+//         country: "Israel",
+//         company: "IKEA",
+//         position: "manager",
+//         phone: "0520000000"
+//     },
+//     {
         
-        name: "Eli Bar",
-        email: "d@imant.com",
-        firstContact: "2017-03-18T21:00:00.000Z",
-        img: "",
-        status: "lead",
-        country: "Israel",
-        company: "Tushiba",
-        position: "manager",
-        phone: "8786876656"
-    }
+//         name: "Eli Bar",
+//         email: "d@imant.com",
+//         firstContact: "2017-03-18T21:00:00.000Z",
+//         img: "",
+//         status: "lead",
+//         country: "Israel",
+//         company: "Tushiba",
+//         position: "manager",
+//         phone: "8786876656"
+//     }
     
-]);
+// ]);

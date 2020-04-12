@@ -47,10 +47,12 @@ contactSchema.statics.destroy = async function destroy(_id) {
     return query.exec().then((contact) => (contact ? contact : undefined))
 }
 
-contactSchema.statics.revise = async function revise(contact) {
-    const { _id } = contact
+contactSchema.statics.revise = async function revise(contact, _id) {
+    console.log(contact , "contact");
+    console.log(_id , "_id");
+    
     const $set = contact
-    const query = this.findOneAndUpdate({ _id }, { $set }, { new: true })
+    const query = this.findOneAndUpdate({ _id }, { $set }, { new: true }) 
     return query.exec().then((contact) => (contact ? contact : undefined))
 }
 
@@ -58,6 +60,7 @@ contactSchema.statics.getByCountry = async function getByCountry(country) {
     const query = this.find({ country })
     return query.exec().then((contact) => (contact ? contact : undefined))
 }
+
 
 contactSchema.statics.getAll = async function getAll() {
     const query = this.find({})
@@ -70,6 +73,20 @@ contactSchema.statics.getPagination = async function getPagination(limit, page) 
     return query.then((result) => (result ? result.docs : undefined))
 
 }
+
+// contactSchema.statics.getPagination = async function getPagination(limit, page) {
+//     const query = this.paginate({}, { page: page, limit: limit })
+//     return query.then((result) => (result ? result.docs : undefined))
+
+// }
+
+contactSchema.statics.searchByName = async function searchByName(name) {
+    const query = this.find( { name: { $regex: name } } )
+    return query.exec().then((contact) => (contact ? contact : undefined))
+}
+
+
+
 
 
 const Contact = mongoose.model("Contact", contactSchema)

@@ -10,6 +10,7 @@ module.exports = (app) => {
     getContacts(app)
     getContactsPagination(app)
     updateContact(app)
+    searchByName(app)
 }
 
 
@@ -36,8 +37,11 @@ const createContact = async (app) => {
 const updateContact = async (app) => {
     app.post('/contact/update', async (req, res) => {
 
-        if (req.body._id) {
-            const contact = await Contact.revise(req.body)
+        let body = req.body
+       
+
+        if (req.query._id) {
+            const contact = await Contact.revise(body ,  req.query._id)
             console.log(contact);
 
             if (contact) {
@@ -89,6 +93,30 @@ const getContactsPagination = async (app) => {
 
     })
 }
+
+
+const searchByName = async (app) => {
+    app.get('/contact/name/search/get', async (req, res) => {
+
+        let name = req.body.name;
+
+        console.log(name);
+        
+
+
+        const contacts = await Contact.searchByName(name)
+
+
+        if (contacts.length > 0) {
+            res.send({ ok: true, result: contacts })
+        } else {
+            res.send({ ok: false, result: CONTACT_ERROR })
+        }
+
+
+    })
+}
+
 
 
 
