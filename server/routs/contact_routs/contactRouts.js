@@ -9,6 +9,7 @@ module.exports = (app) => {
     createContact(app)
     getContacts(app)
     getContactsPagination(app)
+    updateContact(app)
 }
 
 
@@ -17,6 +18,26 @@ const createContact = async (app) => {
 
         if (req.body.email) {
             const contact = await Contact.createNew(req.body)
+            console.log(contact);
+
+            if (contact) {
+                res.send({ ok: true, result: contact })
+            } else {
+                res.send({ ok: false, result: CONTACT_ERROR })
+            }
+        } else {
+            res.send({ ok: false, result: ROUTES_ERROR_MISSING_BODY_PARAMS })
+        }
+
+    })
+}
+
+
+const updateContact = async (app) => {
+    app.post('/contact/update', async (req, res) => {
+
+        if (req.body._id) {
+            const contact = await Contact.revise(req.body)
             console.log(contact);
 
             if (contact) {
@@ -48,6 +69,7 @@ const getContacts = async (app) => {
 
     })
 }
+
 
 const getContactsPagination = async (app) => {
     app.get('/contact/pagination/get', async (req, res) => {
