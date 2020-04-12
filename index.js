@@ -1,4 +1,4 @@
-// import contactRouts from "./server/routs/contact_routs/contactRouts"
+// @ts-nocheck
 
 const contactRouts = require("./server/routs/contact_routs/contactRouts.js")
 const express = require('express')
@@ -26,7 +26,7 @@ contactRouts(app)
 // require('./server/routs/contact_routs/contactRouts')(app);
 
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 3001
 
 app.listen(port, function () {
     console.log(`Running on port ${port} CRM`)

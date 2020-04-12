@@ -1,4 +1,4 @@
-db.contacts.find( { name: { $regex: /eli/ } } )
+db.contacts.find( {"email":{ '$regex': /bar/i } } )
 
 // db.contacts.insertMany( [
 //     {

@@ -80,10 +80,6 @@ contactSchema.statics.getPagination = async function getPagination(limit, page) 
 
 // }
 
-contactSchema.statics.searchByName = async function searchByName(name) {
-    const query = this.find( { name: { $regex: name } } )
-    return query.exec().then((contact) => (contact ? contact : undefined))
-}
 
 
 

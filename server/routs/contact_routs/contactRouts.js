@@ -1,4 +1,5 @@
 
+// @ts-nocheck
 
 
 import { CONTACT_ERROR, ROUTES_ERROR_MISSING_BODY_PARAMS } from '../../tools/error'
@@ -96,19 +97,21 @@ const getContactsPagination = async (app) => {
 
 
 const searchByName = async (app) => {
-    app.get('/contact/name/search/get', async (req, res) => {
+    app.get('/contact/search/name/get', async (req, res) => {
 
-        let name = req.body.name;
+        let keyword = req.query.keyword;
 
-        console.log(name);
-        
-
-
-        const contacts = await Contact.searchByName(name)
-
-
+        const contacts = await Contact.getAll()
         if (contacts.length > 0) {
-            res.send({ ok: true, result: contacts })
+
+            let char = keyword.toLowerCase()
+
+            const p = Array.from(char).reduce((a, v, i) => `${a}[^${char.substr(i)}]*?${v}`, '');
+            const re = RegExp(p);
+    
+            let match_contacts = contacts.filter(contact => contact.name.toLowerCase().match(re));
+            
+            res.send({ ok: true, result: match_contacts })
         } else {
             res.send({ ok: false, result: CONTACT_ERROR })
         }
