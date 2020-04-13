@@ -2,7 +2,7 @@
 // @ts-nocheck
 
 
-import { CONTACT_ERROR, ROUTES_ERROR_MISSING_BODY_PARAMS } from '../../tools/error'
+import { ROUTE_ERROR, ROUTES_ERROR_MISSING_BODY_PARAMS } from '../../tools/error'
 const Contact = require('../../models/contact/Contact')
 
 
@@ -25,7 +25,7 @@ const createContact = async (app) => {
             if (contact) {
                 res.send({ ok: true, result: contact })
             } else {
-                res.send({ ok: false, result: CONTACT_ERROR })
+                res.send({ ok: false, result: ROUTE_ERROR })
             }
         } else {
             res.send({ ok: false, result: ROUTES_ERROR_MISSING_BODY_PARAMS })
@@ -48,7 +48,7 @@ const updateContact = async (app) => {
             if (contact) {
                 res.send({ ok: true, result: contact })
             } else {
-                res.send({ ok: false, result: CONTACT_ERROR })
+                res.send({ ok: false, result: ROUTE_ERROR })
             }
         } else {
             res.send({ ok: false, result: ROUTES_ERROR_MISSING_BODY_PARAMS })
@@ -68,7 +68,7 @@ const getContacts = async (app) => {
         if (contact.length > 0) {
             res.send({ ok: true, result: contact })
         } else {
-            res.send({ ok: false, result: CONTACT_ERROR })
+            res.send({ ok: false, result: ROUTE_ERROR })
         }
 
 
@@ -88,7 +88,7 @@ const getContactsPagination = async (app) => {
         if (contacts.length > 0) {
             res.send({ ok: true, result: contacts })
         } else {
-            res.send({ ok: false, result: CONTACT_ERROR })
+            res.send({ ok: false, result: ROUTE_ERROR })
         }
 
 
@@ -113,7 +113,7 @@ const searchByName = async (app) => {
             
             res.send({ ok: true, result: match_contacts })
         } else {
-            res.send({ ok: false, result: CONTACT_ERROR })
+            res.send({ ok: false, result: ROUTE_ERROR })
         }
 
 

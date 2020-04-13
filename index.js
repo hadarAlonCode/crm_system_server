@@ -1,6 +1,8 @@
 // @ts-nocheck
 
 const contactRouts = require("./server/routs/contact_routs/contactRouts.js")
+const taskRouts = require("./server/routs/task_routs/taskRouts.js")
+
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
@@ -21,6 +23,8 @@ app.get('/', (req, res) => {
 })
 
 contactRouts(app)
+taskRouts(app)
+
 // app.use('/', api)
 // app.use('/', routes);
 // require('./server/routs/contact_routs/contactRouts')(app);
