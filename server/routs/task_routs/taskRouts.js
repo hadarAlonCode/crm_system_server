@@ -9,13 +9,15 @@ const Task = require('../../models/task/Task')
 module.exports = (app) => {
     createTask(app)
     getTasksPagination(app)
+    updateTsak(app)
+    deleteTsak(app)
 }
 
 
 const createTask = async (app) => {
     app.post('/task/create', async (req, res) => {
 
-        if (req.body.email) {
+        if (req.body.text) {
             const task = await Task.createNew(req.body)
             console.log(task);
 
@@ -32,38 +34,57 @@ const createTask = async (app) => {
 }
 
 
-// const updateContact = async (app) => {
-//     app.post('/contact/update', async (req, res) => {
+const updateTsak = async (app) => {
+    app.post('/task/update', async (req, res) => {
 
-//         let body = req.body
+        let body = req.body
        
 
-//         if (req.query._id) {
-//             const contact = await Task.revise(body ,  req.query._id)
-//             console.log(contact);
+        if (req.query._id) {
+            const task = await Task.revise(body ,  req.query._id)
+            console.log(task);
 
-//             if (contact) {
-//                 res.send({ ok: true, result: contact })
-//             } else {
-//                 res.send({ ok: false, result: ROUTE_ERROR })
-//             }
-//         } else {
-//             res.send({ ok: false, result: ROUTES_ERROR_MISSING_BODY_PARAMS })
-//         }
+            if (task) {
+                res.send({ ok: true, result: task })
+            } else {
+                res.send({ ok: false, result: ROUTE_ERROR })
+            }
+        } else {
+            res.send({ ok: false, result: ROUTES_ERROR_MISSING_BODY_PARAMS })
+        }
 
-//     })
-// }
-
-
+    })
+}
 
 
-// const getContacts = async (app) => {
-//     app.get('/contact/get', async (req, res) => {
 
-//         const contact = await Task.getAll()
+const deleteTsak = async (app) => {
+    app.post('/task/delete', async (req, res) => {       
 
-//         if (contact.length > 0) {
-//             res.send({ ok: true, result: contact })
+        if (req.query._id) {
+            const task = await Task.destroy( req.query._id)
+            console.log(task);
+
+            if (task) {
+                res.send({ ok: true, result: task })
+            } else {
+                res.send({ ok: false, result: ROUTE_ERROR })
+            }
+        } else {
+            res.send({ ok: false, result: ROUTES_ERROR_MISSING_BODY_PARAMS })
+        }
+
+    })
+}
+
+
+// const gettasks = async (app) => {
+//     app.get('/task/get', async (req, res) => {
+
+//         const task = await Task.getAll()
+
+//         if (task.length > 0) {
+//             res.send({ ok: true, result: task })
 //         } else {
 //             res.send({ ok: false, result: ROUTE_ERROR })
 //         }

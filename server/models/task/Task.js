@@ -65,7 +65,7 @@ taskSchema.statics.getAll = async function getAll() {
 
 
 taskSchema.statics.getPagination = async function getPagination(limit, page) {
-    const query = this.paginate({}, { page: page, limit: limit , populate: 'contact_id' })
+    const query = this.paginate({}, { page: page, limit: limit , populate: 'contact_id' ,sort: 'date' , })
     return query.then((result) => (result ? result.docs : undefined))
 
 }
