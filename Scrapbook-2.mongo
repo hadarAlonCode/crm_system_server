@@ -1,18 +1,7 @@
 // db.contacts.find( {"email":{ '$regex': /bar/i } } )
 
-db.tasks.insertMany([
-    {
-        
-        text: "Follow Up",
-        date: "2020-07-04T21:00:00.000Z",
-        contact_id: "5e8b5a2b10152670cc2bc2c8",
-        status: false,
-    },
-    {
-        
-        text: "Make a phone call",
-        date: "2020-08-01T21:00:00.000Z",
-        contact_id: "5e8c8628cd04ee436c11ea50",
-        status: false,
-    }
-]);
+db.tasks.updateMany(
+
+        { $set: { "user_key" : "demo1" } }
+    
+);

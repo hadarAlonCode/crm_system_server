@@ -8,7 +8,8 @@ const taskSchema = new Schema({
     text: String,
     date: Date,
     contact_id: {type: Schema.Types.ObjectId, ref: "Contact"},
-    status: Boolean
+    status: Boolean,
+    user_key: String
 
 })
 
@@ -59,18 +60,18 @@ taskSchema.statics.revise = async function revise(task, _id) {
 
 
 taskSchema.statics.getAll = async function getAll() {
-    const query = this.find({})
+    const query = this.find({}).populate('contact_id')
     return query.exec().then((task) => (task ? task : undefined))
 }
 
 
-taskSchema.statics.getPagination = async function getPagination(limit, page) {
-    const query = this.paginate({}, { page: page, limit: limit , populate: 'contact_id' ,sort: 'date' , })
+taskSchema.statics.getPagination = async function getPagination(limit, page, user) {
+    const query = this.paginate({user_key: user}, { page: page, limit: limit , populate: 'contact_id' ,sort: 'date'  , })
     return query.then((result) => (result ? result.docs : undefined))
-
 }
 
 
+// date: {$gt: new Date('06/15/2020').getTime()}
 
 const Task = mongoose.model("Task", taskSchema)
 

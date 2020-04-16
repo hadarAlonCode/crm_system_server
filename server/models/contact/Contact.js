@@ -11,7 +11,8 @@ const contactSchema = new Schema({
     country: String,
     status: String, //  Lead / contacted /sold / lost
     company: String,
-    position: String
+    position: String,
+    user_key: String
 
 })
 
@@ -48,8 +49,7 @@ contactSchema.statics.destroy = async function destroy(_id) {
 }
 
 contactSchema.statics.revise = async function revise(contact, _id) {
-    console.log(contact , "contact");
-    console.log(_id , "_id");
+
     
     const $set = contact
     const query = this.findOneAndUpdate({ _id }, { $set }, { new: true }) 
@@ -62,14 +62,14 @@ contactSchema.statics.getByCountry = async function getByCountry(country) {
 }
 
 
-contactSchema.statics.getAll = async function getAll() {
-    const query = this.find({})
+contactSchema.statics.getAll = async function getAll(user_key) {
+    const query = this.find({ user_key})
     return query.exec().then((contact) => (contact ? contact : undefined))
 }
 
 
-contactSchema.statics.getPagination = async function getPagination(limit, page) {
-    const query = this.paginate({}, { page: page, limit: limit })
+contactSchema.statics.getPagination = async function getPagination(limit, page , user_key) {
+    const query = this.paginate({user_key}, { page: page, limit: limit })
     return query.then((result) => (result ? result.docs : undefined))
 
 }

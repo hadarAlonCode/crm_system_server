@@ -17,9 +17,8 @@ module.exports = (app) => {
 const createTask = async (app) => {
     app.post('/task/create', async (req, res) => {
 
-        if (req.body.text) {
+        if (req.body.text && req.body.user_key) {
             const task = await Task.createNew(req.body)
-            console.log(task);
 
             if (task) {
                 res.send({ ok: true, result: task })
@@ -39,10 +38,8 @@ const updateTsak = async (app) => {
 
         let body = req.body
        
-
         if (req.query._id) {
             const task = await Task.revise(body ,  req.query._id)
-            console.log(task);
 
             if (task) {
                 res.send({ ok: true, result: task })
@@ -63,7 +60,6 @@ const deleteTsak = async (app) => {
 
         if (req.query._id) {
             const task = await Task.destroy( req.query._id)
-            console.log(task);
 
             if (task) {
                 res.send({ ok: true, result: task })
@@ -78,29 +74,15 @@ const deleteTsak = async (app) => {
 }
 
 
-// const gettasks = async (app) => {
-//     app.get('/task/get', async (req, res) => {
-
-//         const task = await Task.getAll()
-
-//         if (task.length > 0) {
-//             res.send({ ok: true, result: task })
-//         } else {
-//             res.send({ ok: false, result: ROUTE_ERROR })
-//         }
-
-
-//     })
-// }
-
 
 const getTasksPagination = async (app) => {
     app.get('/task/pagination/get', async (req, res) => {
 
         let page = req.query.page;
         let limit = req.query.limit;
+        let user_key =  req.query.user_key;
 
-        const tasks = await Task.getPagination(parseInt(limit), parseInt(page))
+        const tasks = await Task.getPagination(parseInt(limit), parseInt(page) , user_key)
 
 
         if (tasks.length > 0) {

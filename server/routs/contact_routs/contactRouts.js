@@ -2,7 +2,7 @@
 // @ts-nocheck
 
 
-import { ROUTE_ERROR, ROUTES_ERROR_MISSING_BODY_PARAMS } from '../../tools/error'
+import {NO_MORE_CONTACTS_ERROR, ROUTE_ERROR, ROUTES_ERROR_MISSING_BODY_PARAMS } from '../../tools/error'
 const Contact = require('../../models/contact/Contact')
 
 
@@ -20,7 +20,6 @@ const createContact = async (app) => {
 
         if (req.body.email) {
             const contact = await Contact.createNew(req.body)
-            console.log(contact);
 
             if (contact) {
                 res.send({ ok: true, result: contact })
@@ -43,7 +42,6 @@ const updateContact = async (app) => {
 
         if (req.query._id) {
             const contact = await Contact.revise(body ,  req.query._id)
-            console.log(contact);
 
             if (contact) {
                 res.send({ ok: true, result: contact })
@@ -62,13 +60,13 @@ const updateContact = async (app) => {
 
 const getContacts = async (app) => {
     app.get('/contact/get', async (req, res) => {
-
-        const contact = await Contact.getAll()
+        
+        const contact = await Contact.getAll(req.query.user_key)
 
         if (contact.length > 0) {
             res.send({ ok: true, result: contact })
         } else {
-            res.send({ ok: false, result: ROUTE_ERROR })
+            res.send({ ok: false, result: NO_MORE_CONTACTS_ERROR })
         }
 
 
@@ -81,14 +79,16 @@ const getContactsPagination = async (app) => {
 
         let page = req.query.page;
         let limit = req.query.limit;
+        let user_key = req.query.user_key;
 
-        const contacts = await Contact.getPagination(parseInt(limit), parseInt(page))
+
+        const contacts = await Contact.getPagination(parseInt(limit), parseInt(page), user_key)
 
 
         if (contacts.length > 0) {
             res.send({ ok: true, result: contacts })
         } else {
-            res.send({ ok: false, result: ROUTE_ERROR })
+            res.send({ ok: false, result: NO_MORE_CONTACTS_ERROR })
         }
 
 
@@ -100,8 +100,8 @@ const searchByName = async (app) => {
     app.get('/contact/search/name/get', async (req, res) => {
 
         let keyword = req.query.keyword;
-
-        const contacts = await Contact.getAll()
+        let user_key =req.query.user_key;
+        const contacts = await Contact.getAll(user_key)
         if (contacts.length > 0) {
 
             let char = keyword.toLowerCase()
