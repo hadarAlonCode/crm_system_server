@@ -56,8 +56,8 @@ contactSchema.statics.revise = async function revise(contact, _id) {
     return query.exec().then((contact) => (contact ? contact : undefined))
 }
 
-contactSchema.statics.getByCountry = async function getByCountry(country) {
-    const query = this.find({ country })
+contactSchema.statics.getBy = async function getBy(user_key , key , value) {
+    const query =  this.find({ user_key , [key]: value })
     return query.exec().then((contact) => (contact ? contact : undefined))
 }
 

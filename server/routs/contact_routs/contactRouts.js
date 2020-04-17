@@ -12,6 +12,7 @@ module.exports = (app) => {
     getContactsPagination(app)
     updateContact(app)
     searchByName(app)
+    getContactsFilter(app)
 }
 
 
@@ -66,7 +67,28 @@ const getContacts = async (app) => {
         if (contact.length > 0) {
             res.send({ ok: true, result: contact })
         } else {
-            res.send({ ok: false, result: NO_MORE_CONTACTS_ERROR })
+            res.send({ ok: true, result: [] })
+        }
+
+
+    })
+}
+
+
+const getContactsFilter = async (app) => {
+    app.get('/contact/filter/get', async (req, res) => {
+
+        let user_key = req.query.user_key
+        let key = req.query.key
+        let value = req.query.value
+
+        
+        const contact = await Contact.getBy(user_key ,key, value )
+
+        if (contact.length > 0) {
+            res.send({ ok: true, result: contact })
+        } else {
+            res.send({ ok: true, result: [] })
         }
 
 
