@@ -1,7 +1,64 @@
 // db.contacts.find( {"email":{ '$regex': /bar/i } } )
 
-db.tasks.updateMany(
-
-        { $set: { "user_key" : "demo1" } }
+// db.contacts.updateMany(
+//         {country: "Israel"},
+//         { $set: { "user_key" : "demo1" } }
     
-);
+// );
+
+// db.contacts.find({ "$expr": { "$eq": "$status" } })
+
+
+// db.contacts.aggregate(
+//     { $group: { 
+//         // Group by fields to match on (a,b)
+//         _id: { ststus: "$a" },
+
+//         // Count number of matching docs for the group
+//         count: { $sum:  1 },
+
+//         // Save the _id for matching docs
+//         docs: { $push: "$_id" }
+//     }},
+
+//     // Limit results to duplicates (more than 1 match) 
+//     { $match: {
+//         count: { $gt : 1 }
+//     }}
+// )
+
+
+db.contacts.aggregate( 
+ [ {
+          $group : { 
+                  _id : {country:"$country",status:"$status"} ,
+                  count: { $sum: 1 }  
+                  }  
+   } ]
+ )
+
+
+ db.contacts.aggregate( 
+  {
+          $group : { 
+                  _id : "$country" ,
+                  count: { $sum: 1 }  
+                  }  
+   } 
+ )
+
+
+db.contacts.aggregate( 
+    {$match: {user_key: "demo1"}},
+    {$group: {_id: "$country", number: {$sum: 1}}}  
+)
+
+
+
+db.contacts.aggregate( 
+    {$match: {status: "sold" , user_key: "demo1" }},
+    {$group: {_id: "$country", number: {$sum: 1}}}  
+)
+
+
+// db.sales.aggregate( [ { $group : { _id : "$item" } } ] )

@@ -74,11 +74,33 @@ contactSchema.statics.getPagination = async function getPagination(limit, page ,
 
 }
 
-// contactSchema.statics.getPagination = async function getPagination(limit, page) {
-//     const query = this.paginate({}, { page: page, limit: limit })
-//     return query.then((result) => (result ? result.docs : undefined))
 
-// }
+
+//counting:
+
+contactSchema.statics.countBy = async function countBy(match_key, group , match_status) {
+
+    let query
+
+    if(match_status){
+        
+      query = this.aggregate( [
+        {$match: {status: match_status , user_key: match_key }},
+        {$group: {_id: `$${group}`, count: {$sum: 1}}} ,
+        { $sort: { count: -1 } }
+       ] ) 
+
+    }else{
+    
+       query = this.aggregate( [
+            {$match: {user_key: match_key}},
+            {$group: {_id: `$${group}` , count: {$sum: 1}}}  ,
+            { $sort: { count: -1 } }
+        ] )
+    }
+    
+    return query.exec().then((result) => (result ? result : undefined))
+}
 
 
 

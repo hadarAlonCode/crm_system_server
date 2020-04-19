@@ -13,6 +13,7 @@ module.exports = (app) => {
     updateContact(app)
     searchByName(app)
     getContactsFilter(app)
+    countBy(app)
 }
 
 
@@ -137,8 +138,34 @@ const searchByName = async (app) => {
         } else {
             res.send({ ok: false, result: ROUTE_ERROR })
         }
+    })
+}
 
 
+const countBy = async (app) => {
+    app.get('/contact/group/count/get', async (req, res) => {
+
+        let match_key = req.query.user_key;
+        let group = req.query.group;
+        let match_status = req.query.match_status ? req.query.match_status : undefined ;
+
+        let count_result
+        if(match_status){
+             count_result = await Contact.countBy(match_key, group, match_status)
+
+        }else{
+             count_result = await Contact.countBy(match_key, group)
+
+        }
+
+        console.log(count_result);
+
+        if(count_result){
+            res.send({ ok: true, result: count_result })
+        }else{
+            res.send({ ok: false, result: "500_ERROR" })
+
+        }
     })
 }
 
