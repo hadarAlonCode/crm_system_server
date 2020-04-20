@@ -150,15 +150,13 @@ const countBy = async (app) => {
         let match_status = req.query.match_status ? req.query.match_status : undefined ;
 
         let count_result
-        if(match_status){
+        if(match_status){         //user_key - match 1   //filter group   // match 2
              count_result = await Contact.countBy(match_key, group, match_status)
 
         }else{
              count_result = await Contact.countBy(match_key, group)
 
         }
-
-        console.log(count_result);
 
         if(count_result){
             res.send({ ok: true, result: count_result })

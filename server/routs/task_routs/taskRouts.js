@@ -11,6 +11,7 @@ module.exports = (app) => {
     getTasksPagination(app)
     updateTsak(app)
     deleteTsak(app)
+    getAllTasks(app)
 }
 
 
@@ -74,6 +75,24 @@ const deleteTsak = async (app) => {
 }
 
 
+
+const getAllTasks = async (app) => {
+    app.get('/task/get', async (req, res) => {
+
+        let user_key =  req.query.user_key;
+
+        const tasks = await Task.getAll( user_key)
+
+
+        if (tasks) {
+            res.send({ ok: true, result: tasks })
+        } else {
+            res.send({ ok: false, result: ROUTE_ERROR })
+        }
+
+
+    })
+}
 
 const getTasksPagination = async (app) => {
     app.get('/task/pagination/get', async (req, res) => {
