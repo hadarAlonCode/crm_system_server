@@ -46,14 +46,17 @@ const login = (app) => {
         console.log(SECRET_KEY, "SECRET_KEY")
         
         if (token) {
-            jwt.verify(token, SECRET_KEY, async (err, decoded) => {
+            jwt.verify (token, SECRET_KEY, async (err, decoded) => {
 
                 console.log(decoded , "decoded")
            
                 if (err && !decoded) {
                     loginByPasswordAndEmail(email, password, res, req.body, User)
                 } else {
+                    // @ts-ignore
                     const user = await User.getById(decoded._id)
+                    console.log(user, "user") ;
+                    
                     const {email, _id} = decoded
                     let {user_key} = user
                     const result = { email, token, user_key,  user_id: _id }
