@@ -47,6 +47,8 @@ const login = (app) => {
         
         if (token) {
             jwt.verify(token, SECRET_KEY, async (err, decoded) => {
+
+                console.log(decoded , "decoded")
            
                 if (err && !decoded) {
                     loginByPasswordAndEmail(email, password, res, req.body, User)
