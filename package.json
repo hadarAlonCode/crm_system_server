@@ -19,6 +19,6 @@
     "request-promise": "^4.2.5"
   },
   "scripts": {
-    "start": "nodemon -r esm index.js"
+    "start": "node -r esm index.js"
   }
 }
