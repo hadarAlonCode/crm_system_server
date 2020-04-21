@@ -73,6 +73,7 @@ userSchema.statics.register = async function register(user) {
 
 
 userSchema.statics.login = async function login(email , password ) {
+    console.log(SECRET_KEY, "scema")
     const user = await User.findOne({ email }).exec()
     if (user) {
         // @ts-ignore

@@ -42,6 +42,8 @@ const login = (app) => {
     app.post('/auth/login', async (req, res) => {
         const { email, password } = req.body
         const token = req.headers['access-token']
+
+        console.log(SECRET_KEY, "SECRET_KEY")
         
         if (token) {
             jwt.verify(token, SECRET_KEY, async (err, decoded) => {
