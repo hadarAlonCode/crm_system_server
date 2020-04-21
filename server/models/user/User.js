@@ -6,7 +6,9 @@ import * as jwt from 'jsonwebtoken'
 import { hashString } from '../../tools/hash'
 require('dotenv').config()
 
-const API_KEY = process.env.API_KEY
+// const API_KEY = process.env.API_KEY
+const API_KEY = "123"
+
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
