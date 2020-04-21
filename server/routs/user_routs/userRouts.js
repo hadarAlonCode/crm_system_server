@@ -4,7 +4,7 @@ import * as jwt from 'jsonwebtoken'
 import { ROUTES_ERROR_MISSING_BODY_PARAMS, USER_ERROR_LOGIN_FAILED } from '../../tools/error'
 const User = require('../../models/user/User')
 require('dotenv').config()
-const API_KEY= process.env.API_KEY 
+const SECRET_KEY = process.env.SECRET_KEY 
 import _ from 'lodash';
 
 
@@ -44,7 +44,7 @@ const login = (app) => {
         const token = req.headers['access-token']
         
         if (token) {
-            jwt.verify(token, API_KEY, async (err, decoded) => {
+            jwt.verify(token, SECRET_KEY, async (err, decoded) => {
            
                 if (err && !decoded) {
                     loginByPasswordAndEmail(email, password, res, req.body, User)

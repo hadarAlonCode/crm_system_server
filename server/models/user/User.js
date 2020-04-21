@@ -7,7 +7,7 @@ import { hashString } from '../../tools/hash'
 require('dotenv').config()
 import _ from 'lodash';
 
-const API_KEY = process.env.API_KEY
+const SECRET_KEY = process.env.SECRET_KEY
 
 const Schema = mongoose.Schema
 
@@ -77,13 +77,13 @@ userSchema.statics.login = async function login(email , password ) {
         const passwordCorrect = await bcryptjs.compare(password, user.password) || user.password === password
         if (passwordCorrect) {
             const token = jwt.sign(user.toJSON(),
-                API_KEY,
+                SECRET_KEY,
                 {
                     expiresIn: '730h'
                 }
             )
 
-            console.log(API_KEY);
+            console.log(SECRET_KEY);
             
             // @ts-ignore
             const { email, _id , user_key } = user
@@ -105,7 +105,7 @@ userSchema.statics.login = async function login(email , password ) {
 userSchema.statics.getIdByJWT = async function getIdByJWT(token) {
     return jwt.verify(
         token,
-        API_KEY,
+        SECRET_KEY,
         (err, decoded) => {
             if (err) {
                 if (err.message === 'jwt expired') {

@@ -1,7 +1,7 @@
 import * as express from 'express'
 import * as jwt from 'jsonwebtoken'
 require('dotenv').config()
-const API_KEY = process.env.API_KEY
+const SECRET_KEY = process.env.SECRET_KEY
 import _ from 'lodash';
 
 
@@ -18,7 +18,7 @@ module.exports = (app) => {
         const token = req.headers['access-token']
         
         if (token) {
-            jwt.verify(token, API_KEY, (err, decoded) => {
+            jwt.verify(token, SECRET_KEY, (err, decoded) => {
                 if (err) {
                     return res.json({ok: false , result:'INVALID TOKEN'})  
                 } else {
