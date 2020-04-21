@@ -4,7 +4,9 @@ const mongoosePaginate = require('mongoose-paginate');
 let bcryptjs = require('bcryptjs');
 import * as jwt from 'jsonwebtoken'
 import { hashString } from '../../tools/hash'
-require('dotenv').config()
+
+if (process.env.NODE_ENV !== 'production') require('dotenv').config()
+
 import _ from 'lodash';
 
 const SECRET_KEY = process.env.SECRET_KEY
@@ -83,7 +85,6 @@ userSchema.statics.login = async function login(email , password ) {
                 }
             )
 
-            console.log(SECRET_KEY);
             
             // @ts-ignore
             const { email, _id , user_key } = user
