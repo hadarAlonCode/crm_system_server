@@ -25,6 +25,8 @@ const loginByPasswordAndEmail = async (
 ) => {
     if (email && password) {
         const result = await Model.login(email, password)
+        console.log(result, "222222222");
+        
         if (result) {
             res.send({ok: true, result: result})
         } else {
