@@ -82,6 +82,9 @@ userSchema.statics.login = async function login(email , password ) {
                     expiresIn: '730h'
                 }
             )
+
+            console.log(API_KEY);
+            
             // @ts-ignore
             const { email, _id , user_key } = user
 
