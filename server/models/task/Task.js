@@ -59,8 +59,8 @@ taskSchema.statics.revise = async function revise(task, _id) {
 // }
 
 
-taskSchema.statics.getAll = async function getAll(user) {
-    const query = this.find({user_key: user}).populate('contact_id')
+taskSchema.statics.getOpenTasks = async function getOpenTasks(user) {
+    const query = this.find({user_key: user , status: false }).populate('contact_id')
     return query.exec().then((task) => (task ? task : undefined))
 }
 

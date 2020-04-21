@@ -11,9 +11,6 @@ const bodyParser = require('body-parser')
 let cors = require('cors')
 const mongoose = require('mongoose')
 
-// const routes = require('./server/routs');
-
-
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/crmSystemDB', { useNewUrlParser: true })
 
 app.use(bodyParser.json())
@@ -25,15 +22,9 @@ app.get('/', (req, res) => {
     res.send({ H_A: true })
 })
 
-// contactRouts(app)
-// taskRouts(app)
 userkRouts(app)
 secureRouts(app)
 
-
-// app.use('/', api)
-// app.use('/', routes);
-// require('./server/routs/contact_routs/contactRouts')(app);
 
 
 const port = process.env.PORT || 5002

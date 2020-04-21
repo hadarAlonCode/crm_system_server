@@ -14,6 +14,7 @@ module.exports = (app) => {
     searchByName(app)
     getContactsFilter(app)
     countBy(app)
+    deleteContact(app)
 }
 
 
@@ -52,6 +53,24 @@ const updateContact = async (app) => {
             }
         } else {
             res.send({ ok: false, result: ROUTES_ERROR_MISSING_BODY_PARAMS })
+        }
+
+    })
+}
+
+const deleteContact = async (app) => {
+    app.post('/contact/delete', async (req, res) => {
+       
+        if (req.query._id) {
+            const contact = await Contact.destroy(  req.query._id)
+
+            if (contact) {
+                res.send({ ok: true, result: contact })
+            } else {
+                res.send({ ok: false, result: ROUTE_ERROR })
+            }
+        } else {
+            res.send({ ok: false, result: "ROUTES_ERROR_MISSING_CONTACT_ID" })
         }
 
     })

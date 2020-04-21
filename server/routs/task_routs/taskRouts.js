@@ -11,7 +11,7 @@ module.exports = (app) => {
     getTasksPagination(app)
     updateTsak(app)
     deleteTsak(app)
-    getAllTasks(app)
+    getOpenTasks(app)
 }
 
 
@@ -76,12 +76,12 @@ const deleteTsak = async (app) => {
 
 
 
-const getAllTasks = async (app) => {
-    app.get('/task/get', async (req, res) => {
+const getOpenTasks = async (app) => {
+    app.get('/task/open/get', async (req, res) => {
 
         let user_key =  req.query.user_key;
 
-        const tasks = await Task.getAll( user_key)
+        const tasks = await Task.getOpenTasks( user_key)
 
 
         if (tasks) {

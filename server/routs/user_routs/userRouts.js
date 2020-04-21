@@ -39,17 +39,14 @@ const login = (app) => {
     app.post('/auth/login', async (req, res) => {
         const { email, password } = req.body
         const token = req.headers['access-token']
-        console.log( email, password );
         
         if (token) {
             jwt.verify(token, API_KEY, async (err, decoded) => {
-                console.log(token)
-                console.log(decoded)
+           
                 if (err && !decoded) {
                     loginByPasswordAndEmail(email, password, res, req.body, User)
                 } else {
                     const user = await User.getById(decoded._id)
-                    console.log(user)
                     const {email, _id} = decoded
                     let {user_key} = user
                     const result = { email, token, user_key,  user_id: _id }
