@@ -4,9 +4,7 @@ const mongoosePaginate = require('mongoose-paginate');
 let bcryptjs = require('bcryptjs');
 import * as jwt from 'jsonwebtoken'
 import { hashString } from '../../tools/hash'
-
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
-
 import _ from 'lodash';
 
 const SECRET_KEY = process.env.SECRET_KEY
@@ -70,10 +68,7 @@ userSchema.statics.register = async function register(user) {
 
 }
 
-
-
 userSchema.statics.login = async function login(email , password ) {
-    console.log(SECRET_KEY, "scema")
     const user = await User.findOne({ email }).exec()
     if (user) {
         // @ts-ignore

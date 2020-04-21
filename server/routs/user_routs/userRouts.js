@@ -11,7 +11,7 @@ import _ from 'lodash';
 module.exports =  (app) => {
     login(app)
     register(app)
-}
+}s
 
 
 
@@ -25,7 +25,6 @@ const loginByPasswordAndEmail = async (
 ) => {
     if (email && password) {
         const result = await Model.login(email, password)
-        console.log(result, "loginByPasswordAndEmail");
         
         if (result) {
             res.send({ok: true, result: result})
@@ -45,19 +44,16 @@ const login = (app) => {
         const { email, password } = req.body
         const token = req.headers['access-token']
 
-        console.log(SECRET_KEY, "SECRET_KEY")
+        console.log(process.env.NODE_ENV)
         
         if (token) {
             jwt.verify (token, SECRET_KEY, async (err, decoded) => {
-
-                console.log(decoded , "decoded")
            
                 if (err && !decoded) {
                     loginByPasswordAndEmail(email, password, res, req.body, User)
                 } else {
                     // @ts-ignore
                     const user = await User.getById(decoded._id)
-                    console.log(user, "user") ;
                     
                     const {email, _id} = decoded
                     let {user_key} = user
