@@ -1,4 +1,4 @@
-// db.contacts.find( {"email":{ '$regex': /bar/i } } )
+db.contacts.find( { } )
 
 // db.contacts.updateMany(
 //         {country: "Israel"},

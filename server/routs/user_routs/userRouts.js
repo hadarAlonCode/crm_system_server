@@ -7,13 +7,10 @@ if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 const SECRET_KEY = process.env.SECRET_KEY 
 import _ from 'lodash';
 
-
 module.exports =  (app) => {
     login(app)
     register(app)
 }
-
-
 
 
 const loginByPasswordAndEmail = async (
@@ -43,8 +40,6 @@ const login = (app) => {
     app.post('/auth/login', async (req, res) => {
         const { email, password } = req.body
         const token = req.headers['access-token']
-
-        console.log(process.env.NODE_ENV)
         
         if (token) {
             jwt.verify (token, SECRET_KEY, async (err, decoded) => {
