@@ -11,7 +11,7 @@ import _ from 'lodash';
 module.exports =  (app) => {
     login(app)
     register(app)
-}s
+}
 
 
 
