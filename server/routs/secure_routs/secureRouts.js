@@ -1,7 +1,8 @@
 import * as express from 'express'
 import * as jwt from 'jsonwebtoken'
-// require('dotenv').config()
+require('dotenv').config()
 const API_KEY = process.env.API_KEY
+import _ from 'lodash';
 
 
 const contactRouts = require("../contact_routs/contactRouts.js")

@@ -4,7 +4,8 @@ const mongoosePaginate = require('mongoose-paginate');
 let bcryptjs = require('bcryptjs');
 import * as jwt from 'jsonwebtoken'
 import { hashString } from '../../tools/hash'
-// require('dotenv').config()
+require('dotenv').config()
+import _ from 'lodash';
 
 const API_KEY = process.env.API_KEY
 
