@@ -25,7 +25,7 @@ const loginByPasswordAndEmail = async (
 ) => {
     if (email && password) {
         const result = await Model.login(email, password)
-        console.log(result, "222222222");
+        console.log(result, "loginByPasswordAndEmail");
         
         if (result) {
             res.send({ok: true, result: result})
@@ -52,18 +52,18 @@ const login = (app) => {
 
                 console.log(decoded , "decoded")
            
-                // if (err && !decoded) {
+                if (err && !decoded) {
                     loginByPasswordAndEmail(email, password, res, req.body, User)
-                // } else {
-                //     // @ts-ignore
-                //     const user = await User.getById(decoded._id)
-                //     console.log(user, "user") ;
+                } else {
+                    // @ts-ignore
+                    const user = await User.getById(decoded._id)
+                    console.log(user, "user") ;
                     
-                //     const {email, _id} = decoded
-                //     let {user_key} = user
-                //     const result = { email, token, user_key,  user_id: _id }
-                //     res.send({ok: true, result: result})
-                // }
+                    const {email, _id} = decoded
+                    let {user_key} = user
+                    const result = { email, token, user_key,  user_id: _id }
+                    res.send({ok: true, result: result})
+                }
             })
         } else {
             loginByPasswordAndEmail(email, password, res, req.body, User)
