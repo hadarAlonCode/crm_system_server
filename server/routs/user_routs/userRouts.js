@@ -3,8 +3,7 @@ import * as jwt from 'jsonwebtoken'
 // import { failedBody, successfulBody } from '../../tools/routing_tools'
 import { ROUTES_ERROR_MISSING_BODY_PARAMS, USER_ERROR_LOGIN_FAILED } from '../../tools/error'
 const User = require('../../models/user/User')
-// const API_KEY = process.env.API_KEY
-const API_KEY = "123"
+const API_KEY = process.env.API_KEY
 
 module.exports =  (app) => {
     login(app)

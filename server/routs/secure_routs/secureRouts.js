@@ -1,9 +1,8 @@
 import * as express from 'express'
 import * as jwt from 'jsonwebtoken'
-require('dotenv').config()
-// const API_KEY = process.env.API_KEY
+// require('dotenv').config()
+const API_KEY = process.env.API_KEY
 
-const API_KEY = "123"
 
 const contactRouts = require("../contact_routs/contactRouts.js")
 const taskRouts = require("../task_routs/taskRouts.js")
