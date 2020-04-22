@@ -66,6 +66,8 @@ taskSchema.statics.getPagination = async function getPagination(limit, page, use
 }
 
 
+// date: {$gt: new Date('06/15/2020').getTime()}
+
 const Task = mongoose.model("Task", taskSchema)
 
 module.exports = Task
