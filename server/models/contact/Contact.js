@@ -76,7 +76,7 @@ contactSchema.statics.getPagination = async function getPagination(limit, page ,
 
 
 
-//counting:
+// === counting:
 
 contactSchema.statics.countBy = async function countBy(match_key, group , match_status) {
 
@@ -101,9 +101,6 @@ contactSchema.statics.countBy = async function countBy(match_key, group , match_
     
     return query.exec().then((result) => (result ? result : undefined))
 }
-
-
-
 
 
 

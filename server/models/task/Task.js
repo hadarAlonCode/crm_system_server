@@ -53,11 +53,6 @@ taskSchema.statics.revise = async function revise(task, _id) {
     return query.exec().then((task) => (task ? task : undefined))
 }
 
-// taskSchema.statics.getByCountry = async function getByCountry(country) {
-//     const query = this.find({ country })
-//     return query.exec().then((task) => (task ? task : undefined))
-// }
-
 
 taskSchema.statics.getOpenTasks = async function getOpenTasks(user) {
     const query = this.find({user_key: user , status: false }).populate('contact_id')
@@ -70,8 +65,6 @@ taskSchema.statics.getPagination = async function getPagination(limit, page, use
     return query.then((result) => (result ? result.docs : undefined))
 }
 
-
-// date: {$gt: new Date('06/15/2020').getTime()}
 
 const Task = mongoose.model("Task", taskSchema)
 

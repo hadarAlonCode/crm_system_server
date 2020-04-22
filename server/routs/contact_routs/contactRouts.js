@@ -1,7 +1,5 @@
 
 // @ts-nocheck
-
-
 import {NO_MORE_CONTACTS_ERROR, ROUTE_ERROR, ROUTES_ERROR_MISSING_BODY_PARAMS } from '../../tools/error'
 const Contact = require('../../models/contact/Contact')
 
@@ -185,31 +183,4 @@ const countBy = async (app) => {
         }
     })
 }
-
-
-
-
-//create paginate !
-
-// const createUser = (app: any) => {
-//     app.post('/auth/create-user', async (req: any, res: any) => {
-//         if(isUser(req.body)) {
-//                 const user = await User.register(req.body)
-//                 if(user) {
-//                     if(typeof user !== 'string') {
-//                         const { email, password } = user
-//                         const token = await User.login(email, req.body.password)
-//                         res.send(successfulBody(token))
-//                     } else {
-//                         res.send(failedBody(USER_ERROR_USER_ALREADY_EXISTS))
-//                     }
-//                 } else {
-//                     res.send(failedBody(ROUTES_ERROR_MODEL_CREATION_FAILED('user')))
-//                 }
-//         } else {
-//             res.send(failedBody(ROUTES_ERROR_MISSING_BODY_PARAMS))
-//         }
-//     })
-// }
-
 

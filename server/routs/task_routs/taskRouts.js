@@ -1,7 +1,6 @@
 
 // @ts-nocheck
 
-
 import { ROUTE_ERROR, ROUTES_ERROR_MISSING_BODY_PARAMS } from '../../tools/error'
 const Task = require('../../models/task/Task')
 
@@ -113,32 +112,6 @@ const getTasksPagination = async (app) => {
 
     })
 }
-
-
-// const searchByName = async (app) => {
-//     app.get('/contact/search/name/get', async (req, res) => {
-
-//         let keyword = req.query.keyword;
-
-//         const contacts = await Task.getAll()
-//         if (contacts.length > 0) {
-
-//             let char = keyword.toLowerCase()
-
-//             const p = Array.from(char).reduce((a, v, i) => `${a}[^${char.substr(i)}]*?${v}`, '');
-//             const re = RegExp(p);
-    
-//             let match_contacts = contacts.filter(contact => contact.name.toLowerCase().match(re));
-            
-//             res.send({ ok: true, result: match_contacts })
-//         } else {
-//             res.send({ ok: false, result: ROUTE_ERROR })
-//         }
-
-
-//     })
-// }
-
 
 
 
