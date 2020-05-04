@@ -67,15 +67,35 @@ const login = (app) => {
 
 const register = (app) => {
     app.post('/auth/register', async (req, res) => {
-                    // @ts-ignore
-                    const result = await User.register( req.body)
+
+                    let result
+
+                    if(!req.body.email && !req.body.password ){
+                         result = "EMAIL_OR_PASSWORD_MISSING"
+                    }else{
+
+                         result = await User.register(req.body)
+                    }
+
                   if(result){
-                    res.send({ok: true, result: result})
+
+                      // login
+                      if(result.id ){
+                        const login_result = await User.login(result.email, req.body.password)                        
+        
+                        if (login_result) {
+                            res.send({ok: true, result: login_result})
+                        } else {
+                            res.send({ok: false, result: USER_ERROR_LOGIN_FAILED})
+                        }
+                      }else{
+                        res.send({ok: true, result: result})
+                      }
+
                   }else{
                     res.send({ok: false, result: result})
                   }
-                   
-                
+
             })
         
     
