@@ -2,8 +2,6 @@ import * as express from 'express'
 import * as jwt from 'jsonwebtoken'
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 const SECRET_KEY = process.env.SECRET_KEY
-
-
 const contactRoutes = require("../contact_routs/contactRouts.js")
 const taskRoutes = require("../task_routs/taskRouts.js")
 

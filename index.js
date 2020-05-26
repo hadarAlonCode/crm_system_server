@@ -2,7 +2,6 @@
 
 const userRoutes = require("./server/routs/user_routs/userRouts.js")
 const secureRoutes = require("./server/routs/secure_routs/secureRouts.js")
-
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')

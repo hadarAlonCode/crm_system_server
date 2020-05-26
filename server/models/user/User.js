@@ -46,6 +46,7 @@ userSchema.statics.doesExist = async function doesExist(email ) {
 
 
 userSchema.statics.getById = async function getById(_id) {
+    
     const query = this.findOne({ _id }, { _id: 0 })
     return query.exec().then((user) => (user ? user : undefined))
 }

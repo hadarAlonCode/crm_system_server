@@ -100,7 +100,6 @@ const getContactsFilter = async (app) => {
         let key = req.query.key
         let value = req.query.value
 
-        
         const contact = await Contact.getBy(user_key ,key, value )
 
         if (contact.length > 0) {

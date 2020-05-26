@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const mongoosePaginate = require('mongoose-paginate');
-import { ObjectID } from 'mongodb'
 
 const Schema = mongoose.Schema
 
