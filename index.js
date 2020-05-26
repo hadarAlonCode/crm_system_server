@@ -1,9 +1,7 @@
 // @ts-nocheck
 
-const contactRouts = require("./server/routs/contact_routs/contactRouts.js")
-const taskRouts = require("./server/routs/task_routs/taskRouts.js")
-const userkRouts = require("./server/routs/user_routs/userRouts.js")
-const secureRouts = require("./server/routs/secure_routs/secureRouts.js")
+const userRoutes = require("./server/routs/user_routs/userRouts.js")
+const secureRoutes = require("./server/routs/secure_routs/secureRouts.js")
 
 const express = require('express')
 const app = express()
@@ -22,8 +20,8 @@ app.get('/', (req, res) => {
     res.send({ H_A: true })
 })
 
-userkRouts(app)
-secureRouts(app)
+userRoutes(app)
+secureRoutes(app)
 
 const port = process.env.PORT || 5002
 

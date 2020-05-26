@@ -4,8 +4,8 @@ if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 const SECRET_KEY = process.env.SECRET_KEY
 
 
-const contactRouts = require("../contact_routs/contactRouts.js")
-const taskRouts = require("../task_routs/taskRouts.js")
+const contactRoutes = require("../contact_routs/contactRouts.js")
+const taskRoutes = require("../task_routs/taskRouts.js")
 
 
 module.exports = (app) => {
@@ -31,8 +31,8 @@ module.exports = (app) => {
     })
 
     
-    contactRouts(ProtectedRoutes)
-    taskRouts(ProtectedRoutes)
+    contactRoutes(ProtectedRoutes)
+    taskRoutes(ProtectedRoutes)
 }
 
 
