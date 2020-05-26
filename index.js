@@ -13,8 +13,8 @@ const mongoose = require('mongoose')
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/crmSystemDB', { useNewUrlParser: true })
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json()) // tells the system that you want json to be used.
+app.use(bodyParser.urlencoded({ extended: false })) //  parsing that can deal with nested objects 
 
 app.use(cors())
 
@@ -25,11 +25,9 @@ app.get('/', (req, res) => {
 userkRouts(app)
 secureRouts(app)
 
-
-
 const port = process.env.PORT || 5002
 
-app.listen(port, function () {
 
+app.listen(port, function () {
     console.log(`Running on port ${port} CRM`)
 })

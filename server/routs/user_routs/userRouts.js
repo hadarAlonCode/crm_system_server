@@ -1,11 +1,9 @@
 
 import * as jwt from 'jsonwebtoken'
-// import { failedBody, successfulBody } from '../../tools/routing_tools'
 import { ROUTES_ERROR_MISSING_BODY_PARAMS, USER_ERROR_LOGIN_FAILED } from '../../tools/error'
 const User = require('../../models/user/User')
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 const SECRET_KEY = process.env.SECRET_KEY 
-import _ from 'lodash';
 
 module.exports =  (app) => {
     login(app)

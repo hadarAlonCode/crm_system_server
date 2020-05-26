@@ -5,7 +5,6 @@ let bcryptjs = require('bcryptjs');
 import * as jwt from 'jsonwebtoken'
 import { hashString } from '../../tools/hash'
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
-import _ from 'lodash';
 
 const SECRET_KEY = process.env.SECRET_KEY
 
